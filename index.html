@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<!-- saved from url=(0118)file:///C:/Users/bartb/Pictures/Ramen%20thuis/Glass%20measurement%20sheet%20%E2%80%94%20fill%20in%20&%20calculate.html -->
+<html lang="nl"><head>
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MijnApp">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title _msttexthash="4257149" _msthash="0">Glass measurement sheet — fill in &amp; calculate</title>
+<style>
+  :root{
+    --p1:#6a11cb; --p2:#2575fc;
+    --green:#0b7a3b; --green-l:#e6f4ea;
+    --blue:#1a73e8; --blue-l:#e8f0fe;
+    --red:#c0392b; --red-l:#fdecea;
+    --ink:#16181d; --muted:#666b76;
+    --line:#e0e2e7; --bg:#f6f7f9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:20px;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;align-items:center}
+  
+  /* Strakkere, gecentreerde container voor scherm */
+  header, .card, .footer-cols, .footer-box { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  
+  header{margin-bottom:16px;padding:24px;border-radius:16px;
+    background:linear-gradient(135deg,var(--p1),var(--p2));color:#fff;
+    box-shadow:0 6px 24px rgba(37,117,252,.25)}
+  header h1{margin:0 0 6px;font-size:1.45rem}
+  header p{margin:0;opacity:.9;font-size:.88rem}
+  
+  .card{margin-bottom:16px;background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .card h2{font-size:1.05rem;margin:0 0 16px;padding-left:10px;border-left:4px solid var(--p2)}
+  .card.green h2{border-left-color:var(--green)}
+  .card.blue h2{border-left-color:var(--blue)}
+  
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  label{display:flex;flex-direction:column;font-size:.74rem;color:var(--muted);gap:4px;font-weight:600}
+  input,select{padding:8px 10px;border:1.5px solid var(--line);border-radius:8px;font:inherit;
+    font-size:.88rem;background:#fff;color:var(--ink);width:100%;transition:border-color .15s, box-shadow .15s}
+  input:focus,select:focus{outline:none;border-color:var(--p2);box-shadow:0 0 0 3px rgba(37,117,252,.18)}
+  input:disabled{background:#f0f1f4;color:#a0a4ad;cursor:not-allowed}
+  button{padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:#eef0f4;
+    font:inherit;font-weight:600;cursor:pointer;transition:transform .12s, box-shadow .12s}
+  button:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.1)}
+  button.primary{background:linear-gradient(135deg,var(--p1),var(--p2));border:none;color:#fff}
+  button.green{background:var(--green);border:none;color:#fff}
+  button.blue{background:var(--blue);border:none;color:#fff}
+  button.danger{color:var(--red);border-color:#fadbd8}
+  button.danger:hover{background:var(--red-l)}
+  
+  .table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:1650px}
+  table.docs{min-width:0;width:100%}
+  th,td{padding:8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+  th:nth-child(-n+12),td:nth-child(-n+12){text-align:left}
+  thead th{background:linear-gradient(180deg,#f0f4ff,#e6ecff);font-weight:700;
+    font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;color:var(--p1)}
+  tbody tr:nth-child(even){background:#fafbfd}
+  tbody tr:hover{background:var(--blue-l)}
+  tfoot td{font-weight:800;background:linear-gradient(180deg,#f0f4ff,#e6ecff);color:var(--p1)}
+  tbody input,tbody select{width:100%;min-width:58px;padding:6px;font-size:.8rem}
+  
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700}
+  .badge.good{background:var(--green-l);color:var(--green)}
+  .badge.warn{background:#fff4e5;color:#b26a00}
+  .badge.bad{background:var(--red-l);color:var(--red)}
+  .badge.info{background:var(--blue-l);color:var(--blue)}
+  
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+  .kpi{border-radius:12px;padding:16px;color:#fff}
+  .kpi:nth-child(1){background:linear-gradient(135deg,#667eea,#764ba2)}
+  .kpi:nth-child(2){background:linear-gradient(135deg,#f093fb,#f5576c)}
+  .kpi:nth-child(3){background:linear-gradient(135deg,#4facfe,#00f2fe)}
+  .kpi:nth-child(4){background:linear-gradient(135deg,#43e97b,#38f9d7);color:#0b4a2b}
+  .kpi:nth-child(5){background:linear-gradient(135deg,#fa709a,#fee140);color:#5a2d00}
+  .kpi:nth-child(6){background:linear-gradient(135deg,#30cfd0,#330867)}
+  .kpi .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;opacity:.9;font-weight:700}
+  .kpi .value{font-size:1.3rem;font-weight:800;margin-top:4px}
+  .kpi .value small{font-size:.7rem;opacity:.85;font-weight:600}
+  
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+  .hint{font-size:.78rem;color:var(--muted);margin:12px 0 0;font-style:italic}
+  .vs-bad{color:var(--red);font-weight:700;text-align:right}
+  .vs-good{color:var(--green);font-weight:700;text-align:right}
+  .vs-sum{background:linear-gradient(90deg,#e6f4ea,#e8f0fe);font-weight:800;text-align:right}
+  
+  .footer-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .footer-box{border-radius:16px;padding:20px;font-size:.9rem;line-height:1.6}
+  .footer-box.green{background:var(--green-l);color:var(--green);border:2px solid var(--green)}
+  .footer-box.blue{background:var(--blue-l);color:var(--blue);border:2px solid var(--blue)}
+  .footer-box h3{margin:0 0 8px;font-size:1rem}
+  .footer-box p{margin:0 0 8px}
+  .footer-box p:last-child{margin:0}
+  .footer-box ul{margin:.4em 0;padding-left:1.4em}
+  .footer-box li{margin-bottom:.25em}
+  
+  .sweet-box{font-size:.92rem;line-height:1.65;color:var(--ink)}
+  .sweet-box p{margin:0 0 .6em}
+  .sweet-box p:last-child{margin:0}
+  .sweet-box strong{color:var(--green);font-weight:800}
+  .doc-empty{color:var(--muted);font-style:italic;font-size:.85rem;text-align:center;padding:16px}
+  
+  .unit-switch{display:flex;gap:0;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;width:100%}
+  .unit-switch input{display:none}
+  .unit-switch label{padding:8px;cursor:pointer;flex:1;text-align:center;font-size:.85rem;
+    color:var(--muted);font-weight:700;background:#fff;transition:all .15s;flex-direction:row;justify-content:center;align-items:center}
+  .unit-switch input:checked + label{background:var(--p2);color:#fff}
+  .unit-switch label:first-of-type{border-right:1px solid var(--line)}
+
+  .print-only { display: none; }
+  .empty-row { display: table-row; } /* Standaard zichtbaar op scherm */
+
+  @media (max-width:720px){.footer-cols{grid-template-columns:1fr}}
+  
+  /* ========================================= */
+  /* --- OFFICIEEL PRINT / PDF RAPPORT CSS --- */
+  /* ========================================= */
+  @media print{
+    @page { 
+      size: A4 landscape; 
+      margin: 15mm 12mm 15mm 12mm; 
+      @bottom-right { content: "Pagina " counter(page) " van " counter(pages); font-family: sans-serif; font-size: 8pt; color: #555; }
+      @bottom-left { content: "Glasmeetstaat & Warmteverlies Rapport"; font-family: sans-serif; font-size: 8pt; color: #555; }
+    }
+    
+    body { background: #fff; padding: 0; font-size: 9pt; color: #000; display: block; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    
+    /* Verberg alle niet-printbare web-elementen */
+    .no-print, button, .actions, .unit-switch, .hint, header, .footer-cols, #kpiTot, .badge { display: none !important; }
+    
+    /* Toon print-only blokken */
+    .print-only { display: block !important; }
+    
+    /* VERBERG LEGE RIJEN IN DE PDF OM RUIMTE TE BESPAREN */
+    .empty-row { display: none !important; }
+    
+    /* Titels en Kaarten */
+    .card { border: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 0 20px 0 !important; background: transparent !important; width: 100% !important; max-width: 100% !important; page-break-inside: avoid; }
+    .card h2 { font-size: 11pt; border-left: none; padding-left: 0; color: #000; margin-bottom: 8px; border-bottom: 1.5px solid #000; padding-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    /* Inputs en selects platmaken (alsof het getypte tekst is) */
+    input, select { 
+      border: none !important; background: transparent !important; padding: 0 !important; 
+      color: #000 !important; font-weight: 600; font-size: 8.5pt; appearance: none; box-shadow: none !important;
+      width: 100%; overflow: hidden; text-overflow: ellipsis;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator { display: none; }
+    
+    /* Tabellen: strak, herhalende headers, geen page-breaks in rijen */
+    table { font-size: 7pt; min-width: 0; width: 100%; border-collapse: collapse; border: 1px solid #666; margin-bottom: 10px; table-layout: auto; }
+    th, td { padding: 3px 4px; border: 1px solid #ddd; white-space: normal; text-align: left; word-break: break-word; }
+    thead { display: table-header-group; } /* Herhaal header op elke pagina */
+    tr { break-inside: avoid; page-break-inside: avoid; }
+    thead th { background: #f0f0f0 !important; color: #000 !important; font-weight: bold; border-bottom: 1.5px solid #666; }
+    tbody tr:nth-child(even) { background: #fafafa !important; }
+    tfoot td { background: #f0f0f0 !important; color: #000 !important; font-weight: bold; border-top: 1.5px solid #666; }
+
+    /* Specifieke opmaak voor de Bijlage (Stavingstukken) */
+    #printDocsSection { margin-top: 0; page-break-before: always; }
+    #printDocsSection h2 { border-bottom: 2px solid #000; font-size: 12pt; }
+    #printDocsSection table { border: 1px solid #000; }
+    #printDocsSection th { background: #e0e0e0 !important; border-bottom: 2px solid #000; }
+
+    /* Specifieke opmaak voor de officiële koptekst */
+    .print-header-block { margin-bottom: 25px; border-bottom: 2px solid #000; padding-bottom: 15px; }
+    .print-header-block h1 { font-size: 18pt; margin: 0 0 10px 0; color: #000; text-transform: uppercase; }
+    
+    /* Flexbox voor de header-info (Project links, Glasman rechts) */
+    .print-header-info { display: flex; justify-content: space-between; gap: 20px; }
+    .print-header-col { flex: 1; }
+    .print-header-col h3 { font-size: 9pt; margin: 0 0 5px 0; color: #444; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #ccc; padding-bottom: 2px; }
+    .print-header-col p { font-size: 8.5pt; margin: 0 0 4px 0; color: #000; line-height: 1.3; }
+
+    /* Handtekeningvak */
+    .print-signature { display: flex; justify-content: space-between; margin-top: 30px; page-break-inside: avoid; }
+    .sig-box { width: 45%; border-top: 1px solid #000; padding-top: 8px; font-size: 8pt; font-weight: bold; }
+    .sig-box span { font-weight: normal; color: #555; display: block; margin-bottom: 25px; font-size: 7.5pt; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 _msttexthash="15609477" _msthash="1">🪟 Glass measurement sheet — enter your numbers</h1>
+  <p _msttexthash="11445642" _msthash="2">Fill in the details. The PDF is automatically generated in a clean, official report format (A4 landscape) including attachments and signature pad.</p>
+</header>
+
+<!-- Dit blok wordt alleen bij printen getoond, strak opgemaakt -->
+<div class="print-only" id="printHeader" _msthidden="11"><div class="print-header-block">
+    <h1>Glasmeetstaat &amp; Warmteverlies Rapport</h1>
+    <div class="print-header-info">
+      <div class="print-header-col">
+        <h3>Projectgegevens</h3>
+        <p><strong>Project:</strong> Zonder naam</p>
+        <p><strong>Adres:</strong> -</p>
+        <p><strong>Jaartallen:</strong> Bouwjaar: –</p>
+        <p><strong>Referentieperiode:</strong> –</p>
+        <p><strong>Datum opmaak:</strong> 9/11/2026</p>
+      </div>
+      <div class="print-header-col">
+        <h3>Uitvoerende partij (Glasman)</h3></div></div></div></div>
+
+<section class="card">
+  <h2 _msttexthash="260000" _msthash="14">Project details</h2>
+  <div class="grid">
+    <label><font _mstmutation="1" _msttexthash="193297" _msthash="16">Project / name</font><input id="pNaam" type="text" placeholder="e.g. Family X home" _mstplaceholder="334802" _msthash="15"></label>
+    <label><font _mstmutation="1" _msttexthash="94653" _msthash="18">Address</font><input id="pAdres" type="text" placeholder="street, municipality" _mstplaceholder="279851" _msthash="17"></label>
+    <label><font _mstmutation="1" _msttexthash="395018" _msthash="20">Year of construction</font><input id="pBouwjaar" type="number" min="1800" max="2100" step="1" placeholder="e.g. 1965" _mstplaceholder="58474" _msthash="19"></label>
+    <label><font _mstmutation="1" _msttexthash="664573" _msthash="22">Year of renovation (optional)</font><input id="pVerbouwjaar" type="number" min="1800" max="2100" step="1" placeholder="e.g. 2005" _mstplaceholder="56381" _msthash="21"></label>
+    <label><font _mstmutation="1" _msttexthash="264056" _msthash="23">Frame-U (Uf) W/m²K</font><input id="pUf" type="number" step="0.1" min="0" value="2.0"></label>
+    <label><font _mstmutation="1" _msttexthash="228878" _msthash="24">Frame width (mm)</font><input id="pFrame" type="number" step="5" min="0" value="70"></label>
+    <label><font _mstmutation="1" _msttexthash="349752" _msthash="25">Degree hours (K·h/y)</font><input id="pHdd" type="number" step="1000" min="0" value="65000"></label>
+    <label><font _mstmutation="1" _msttexthash="2366494" _msthash="26">Energy price (€/kWh)</font><input id="pPrijs" type="number" step="0.01" min="0" value="0.45"></label>
+    <label><font _mstmutation="1" _msttexthash="1099631" _msthash="27">CO₂ (kg/kWh)</font><input id="pCo2" type="number" step="0.01" min="0" value="0.20"></label>
+    <div>
+      <label style="margin-bottom:4px" _msttexthash="543712" _msthash="28">Input unit of measurement</label>
+      <div class="unit-switch">
+        <input type="radio" name="unit" id="unitMm" value="mm" checked="">
+        <label for="unitMm" _msttexthash="21255" _msthash="29">mm</label>
+        <input type="radio" name="unit" id="unitCm" value="cm">
+        <label for="unitCm" _msttexthash="20345" _msthash="30">cm</label>
+      </div>
+    </div>
+  </div>
+  <p class="hint" id="periodHint" _msttexthash="53412476" _msthash="31">Vul een bouwjaar (en eventueel verbouwjaar) in om de referentieperiode en -Uw te zien. Energieprijs standaard € 0,45/kWh.</p>
+</section>
+
+<section class="card blue">
+  <h2 _msttexthash="3681522" _msthash="32">Window maker / glass man — for the PDF</h2>
+  <div class="grid">
+    <label><font _mstmutation="1" _msttexthash="180362" _msthash="34">Company name</font><input id="gNaam" type="text" placeholder="e.g. Glaswerken Janssens" _mstplaceholder="483145" _msthash="33"></label>
+    <label><font _mstmutation="1" _msttexthash="236860" _msthash="35">Contact person</font><input id="gContact" type="text"></label>
+    <label><font _mstmutation="1" _msttexthash="94653" _msthash="36">Address</font><input id="gAdres" type="text"></label>
+    <label><font _mstmutation="1" _msttexthash="59826" _msthash="37">Phone</font><input id="gTel" type="tel"></label>
+    <label><font _mstmutation="1" _msttexthash="58058" _msthash="38">Email</font><input id="gEmail" type="email"></label>
+    <label><font _mstmutation="1" _msttexthash="129623" _msthash="39">VAT number</font><input id="gBtw" type="text"></label>
+    <label><font _mstmutation="1" _msttexthash="294801" _msthash="40">Quotation number</font><input id="gOffertNr" type="text"></label>
+    <label><font _mstmutation="1" _msttexthash="233298" _msthash="41">Quotation date</font><input id="gOffertDatum" type="date"></label>
+    <label><font _mstmutation="1" _msttexthash="159393" _msthash="42">Valid until</font><input id="gOffertGeldig" type="date"></label>
+  </div>
+</section>
+
+<section class="card blue">
+  <h2 _msttexthash="12053132" _msthash="43">📎 Supporting documents &amp; documentation</h2>
+  <p class="hint" _msttexthash="12956073" _msthash="44"> Keep the references to the supporting documents (glass guarantee, U<sub _istranslated="1">g</sub> statement, etc.) here. 
+ Files up to ~900 KB can optionally be added (saved in your browser). </p>
+  <div class="table-wrap"><table id="tblDocs" class="docs"><tbody><tr><td colspan="8" class="doc-empty">Nog geen stavingstukken toegevoegd. Klik op "➕ Document toevoegen".</td></tr></tbody></table></div>
+  <div class="actions no-print">
+    <button class="primary" id="btnAddDoc" _msttexthash="1116921" _msthash="66">➕ Add document</button>
+    <button class="blue" id="btnCsvDocs" _msttexthash="1572649" _msthash="67">⬇ CSV supporting documents</button>
+    <button class="danger" id="btnClearDocs" _msttexthash="11784955" _msthash="68">🧹 Clear all supporting documents</button>
+  </div>
+  <input type="file" id="docFileInput" style="display:none" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.txt">
+</section>
+
+<section class="footer-box blue no-print">
+  <h3 _msttexthash="12306424" _msthash="69">📋 Which supporting documents are customary?</h3>
+  <p _msttexthash="3504878" _msthash="70">Depending on the scheme, these are the most frequently requested documents:</p>
+  <ul>
+    <li _msttexthash="8324576" _msthash="71"><strong _istranslated="1">Manufacturer's declaration with U<sub _istranslated="1">g</sub> value</strong> — mandatory for most subsidy schemes.</li>
+    <li _msttexthash="5201950" _msthash="72"><strong _istranslated="1">Supplier sheet / datasheet</strong> — technical sheet of the glass.</li>
+    <li _msttexthash="4537455" _msthash="73"><strong _istranslated="1">Glass Warranty</strong> — product warranty and installation warranty.</li>
+    <li _msttexthash="3226821" _msthash="74"><strong _istranslated="1">Invoice</strong> — clearly indicating the type of glass and U<sub _istranslated="1">g</sub>.</li>
+    <li _msttexthash="4563286" _msthash="75"><strong _istranslated="1">Before/after photos</strong> — proof of the existing condition.</li>
+    <li _msttexthash="7494773" _msthash="76"><strong _istranslated="1">EPB report / proof of performance</strong> — in the case of new construction or renovation.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2><font _mstmutation="1" _msttexthash="3931213" _msthash="77">Measurement sheet — fill in the measurements (<span id="unitLabel" _mstmutation="1" _istranslated="1">mm</span></font>)</h2>
+  <div class="table-wrap"><table id="tblMeet"><thead><tr>
+    <th>Ruimte</th><th>Oriënt.</th><th>Type</th><th>Methode</th>
+    <th>Breedte (mm)</th><th>Hoogte (mm)</th><th>Aantal</th>
+    <th>Sponning (mm)</th><th>Glaslat (mm)</th><th>Glasband (mm)</th>
+    <th>Glasdikte</th>
+    <th>Huidig glas</th><th>Nieuw glas</th>
+    <th>Omtrek glas (mm)</th><th>Omtrek glas (cm)</th>
+    <th>Uw oud</th><th>Uw nieuw</th><th>ΔU</th>
+    <th>kWh/j</th><th>€/j</th><th>kg CO₂/j</th>
+    <th class="no-print"></th>
+  </tr></thead><tbody><tr data-id="w1794217368044_1_tp5">
+    <td><input data-field="ruimte" value="Veranda" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_1_tp5" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_2_nq6">
+    <td><input data-field="ruimte" value="Keuken" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_2_nq6" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_3_a76">
+    <td><input data-field="ruimte" value="Living" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_3_a76" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_4_020">
+    <td><input data-field="ruimte" value="Opberghok/stal" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_4_020" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_5_jvw">
+    <td><input data-field="ruimte" value="Schuifdeuren" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_5_jvw" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_6_kj4">
+    <td><input data-field="ruimte" value="Velux/dakvenster" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_6_kj4" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_7_nsh">
+    <td><input data-field="ruimte" value="Slaapkamer 1" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_7_nsh" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_8_0kc">
+    <td><input data-field="ruimte" value="Slaapkamer 2" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_8_0kc" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_9_ae4">
+    <td><input data-field="ruimte" value="Badkamer 1" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_9_ae4" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_10_98h">
+    <td><input data-field="ruimte" value="Badkamer 2" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_10_98h" title="Verwijderen">✕</button></td>
+  </tr><tr data-id="w1794217368044_11_xzs">
+    <td><input data-field="ruimte" value="Badkamer 3" style="min-width:120px"></td>
+    <td><select data-field="orient"><option value="" selected="">–</option><option value="N">N</option><option value="NO">NO</option><option value="O">O</option><option value="ZO">ZO</option><option value="Z">Z</option><option value="ZW">ZW</option><option value="W">W</option><option value="NW">NW</option></select></td>
+    <td><select data-field="type"><option value="Vast" selected="">Vast</option><option value="Draai-kip">Draai-kip</option><option value="Schuif">Schuif</option><option value="Dakvenster / Velux">Dakvenster / Velux</option><option value="Deur">Deur</option></select></td>
+    <td><select data-field="methode"><option value="effectief" selected="">Effectief opgemeten</option><option value="sponning">Sponning + glaslat</option></select></td>
+    <td><input data-field="b" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="h" type="number" min="0" step="1" value=""></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="1" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="1" value="" disabled="" title="Niet nodig bij effectief opgemeten"></td>
+    <td><input data-field="glaslat" type="number" min="0" step="1" value="17" disabled=""></td>
+    <td><input data-field="band" type="number" min="0" step="1" value="4" disabled=""></td>
+    <td data-calc="glasdikte"><input data-field="dikte" type="number" min="0" step="1" value="" placeholder="gemeten (mm)" style="min-width:80px"></td>
+    <td><select data-field="glasOud"><option value="enkel">Enkel — 5,75</option><option value="dubbel" selected="">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td><select data-field="glasNieuw"><option value="enkel">Enkel — 5,75</option><option value="dubbel">Dubbel — 2,85</option><option value="hr">HR — 1,60</option><option value="hrplus">HR+ — 1,30</option><option value="hrpp">HR++ — 1,10</option><option value="hrpp10" selected="">⭐ HR++ 1.0 — 1,00</option><option value="hrppp">HR+++ — 0,65</option><option value="vacuum">Vacuüm — 0,80</option></select></td>
+    <td data-calc="Pglas_mm">0</td>
+    <td data-calc="Pglas_cm">0,0</td>
+    <td data-calc="uwOud">0,00</td>
+    <td data-calc="uwNieuw">0,00</td>
+    <td data-calc="dU"><strong>0,00</strong></td>
+    <td data-calc="kWh">0</td>
+    <td data-calc="eur">€ 0</td>
+    <td data-calc="co2">0</td>
+    <td class="no-print"><button class="danger" data-del="w1794217368044_11_xzs" title="Verwijderen">✕</button></td>
+  </tr></tbody><tfoot><tr>
+    <td colspan="6">Totaal</td><td>11</td><td colspan="4"></td><td colspan="2"></td>
+    <td>0</td><td>0,0</td>
+    <td></td><td></td><td></td>
+    <td>0</td><td>€ 0</td><td>0</td>
+    <td class="no-print"></td>
+  </tr></tfoot></table></div>
+  <div class="actions no-print">
+    <button class="primary" id="btnAdd" _msttexthash="1007292" _msthash="778">➕ Add row</button>
+    <button class="green" id="btnFill" _msttexthash="11428287" _msthash="779">🏠 Fill standard spaces</button>
+    <button class="danger" id="btnClear" _msttexthash="11462191" _msthash="780">🧹 Clear all measurements</button>
+  </div>
+  <p class="hint">
+    <font _mstmutation="1" _msttexthash="36367929" _msthash="781"><strong _mstmutation="1" _istranslated="1">Effectively measured</strong>: you measure the visible glass size directly. <br _mstmutation="1" _istranslated="1"> <strong _mstmutation="1" _istranslated="1">Rebate + glazing bead</strong>: glass thickness = rebate − glazing bead − 2 × glass strip. </font></p>
+</section>
+
+<section class="card green">
+  <h2 _msttexthash="1363557" _msthash="782">⭐ HR++ with U<sub _istranslated="1">g</sub> = 1.0 W/m²K</h2>
+  <div class="sweet-box">
+    <p _msttexthash="43131166" _msthash="783"> This glazing meets the usual condition for insulation subsidies
+ (U<sub _istranslated="1">g</sub> ≤ 1.2 W/m²K) and is indicated in the dropdown with <strong _istranslated="1">⭐ HR++ 1.0 — 1.00</strong>. </p>
+    <p _msttexthash="21976812" _msthash="784"> Other options (HR+++ / triple, vacuum) remain available. The tool calculates
+ with the chosen U<sub _istranslated="1">g-value</sub> — not a recommendation, just a calculation tool. </p>
+  </div>
+</section>
+
+<section class="card green no-print">
+  <h2 _msttexthash="3604497" _msthash="785">Added value insulation — totals</h2>
+  <div class="kpi-row" id="kpiTot">
+    <div class="kpi"><div class="label">Glasoppervlakte</div><div class="value">0,00 <small>m²</small></div></div>
+    <div class="kpi"><div class="label">Totale omtrek glas</div><div class="value">0,00 <small>m</small></div></div>
+    <div class="kpi"><div class="label">Energiebesparing</div><div class="value">0 <small>kWh/j</small></div></div>
+    <div class="kpi"><div class="label">Geldbesparing</div><div class="value">€ 0 <small>/jaar</small></div></div>
+    <div class="kpi"><div class="label">CO₂-besparing</div><div class="value">0 <small>kg/j</small></div></div>
+    <div class="kpi"><div class="label">Over 10 jaar</div><div class="value">€ 0</div></div></div>
+</section>
+
+<section class="card green">
+  <h2 _msttexthash="2806687" _msthash="798">Added value — past vs present (per room)</h2>
+  <div class="table-wrap"><table id="tblVs"><thead><tr>
+    <th>Ruimte</th>
+    <th>Uw vroeger</th><th>Uw nu</th><th>ΔU</th>
+    <th>Verbruik vroeger (kWh/j)</th><th>Verbruik nu (kWh/j)</th><th>Besparing (kWh/j)</th>
+    <th>Kost vroeger (€/j)</th><th>Kost nu (€/j)</th><th>Besparing (€/j)</th>
+    <th>CO₂ vroeger (kg/j)</th><th>CO₂ nu (kg/j)</th><th>Besparing (kg/j)</th>
+  </tr></thead><tbody><tr class="empty-row">
+      <td>Veranda</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Keuken</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Living</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Opberghok/stal</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Schuifdeuren</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Velux/dakvenster</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Slaapkamer 1</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Slaapkamer 2</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Badkamer 1</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Badkamer 2</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr><tr class="empty-row">
+      <td>Badkamer 3</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td class="vs-sum">0,00</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+      <td class="vs-bad">€ 0</td>
+      <td class="vs-good">€ 0</td>
+      <td class="vs-good">−€ 0</td>
+      <td class="vs-bad">0</td>
+      <td class="vs-good">0</td>
+      <td class="vs-good">−0</td>
+    </tr></tbody><tfoot><tr>
+    <td>Totaal</td>
+    <td>0,00</td>
+    <td>0,00</td>
+    <td>0,00</td>
+    <td>0</td><td>0</td><td>−0</td>
+    <td>€ 0</td><td>€ 0</td><td>−€ 0</td>
+    <td>0</td><td>0</td><td>−0</td>
+  </tr></tfoot></table></div>
+  <p class="hint" _msttexthash="5534932" _msthash="981">Consumption = Your × window area × degree hours ÷ 1000 × energy price. Indicative, no EPB certificate.</p>
+</section>
+
+<section class="card blue">
+  <h2 _msttexthash="241319" _msthash="982">Summary by room</h2>
+  <div class="table-wrap"><table id="tblRuimte"><thead><tr>
+    <th>Ruimte</th><th># ramen</th><th>Glas m²</th><th>Raam m²</th><th>Omtrek (m)</th>
+    <th>Uw oud</th><th>Uw nieuw</th><th>ΔU</th>
+    <th>kWh/j</th><th>€/j</th><th>kg CO₂/j</th><th>€ /10 j</th>
+  </tr></thead><tbody><tr class="empty-row">
+      <td>Veranda</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Keuken</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Living</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Opberghok/stal</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Schuifdeuren</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Velux/dakvenster</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Slaapkamer 1</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Slaapkamer 2</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Badkamer 1</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Badkamer 2</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr><tr class="empty-row">
+      <td>Badkamer 3</td><td>1</td>
+      <td>0,00</td><td>0,00</td><td>0,00</td>
+      <td class="vs-bad">0,00</td>
+      <td class="vs-good">0,00</td>
+      <td><strong>0,00</strong></td>
+      <td>0</td><td>€ 0</td><td>0</td>
+      <td>€ 0</td>
+    </tr></tbody><tfoot><tr>
+    <td>Totaal</td><td>11</td>
+    <td>0,00</td><td>0,00</td><td>0,00</td>
+    <td>0,00</td>
+    <td>0,00</td>
+    <td>0,00</td>
+    <td>0</td><td>€ 0</td>
+    <td>0</td><td>€ 0</td>
+  </tr></tfoot></table></div>
+</section>
+
+<!-- Handtekeningblok (alleen voor de PDF) -->
+<div class="print-only print-signature" _msthidden="2">
+  <div class="sig-box" _msthidden="1">
+    <font _mstmutation="1" _msttexthash="2512627" _msthidden="1" _msthash="1151"><span _mstmutation="1">Datum van opmeting / akkoord:</span>
+    ......................................................
+  </font></div>
+  <div class="sig-box" _msthidden="1">
+    <font _mstmutation="1" _msttexthash="3069092" _msthidden="1" _msthash="1152"><span _mstmutation="1">Handtekening klant / opdrachtgever:</span>
+    ......................................................
+  </font></div>
+</div>
+
+<div class="card no-print">
+  <div class="actions" style="margin-top:0">
+    <button class="primary" onclick="window.print()" _msttexthash="11589279" _msthash="1153">📄 Generate Official PDF Report</button>
+    <button class="blue" id="btnCsv" _msttexthash="1447134" _msthash="1154">⬇ CSV bill of quantities</button>
+    <button class="danger" id="btnReset" _msttexthash="114179" _msthash="1155">Reset all</button>
+  </div>
+</div>
+
+<div class="footer-cols no-print">
+  <div class="footer-box green">
+    <h3 _msttexthash="11453546" _msthash="1156">🌱 Environmental impact</h3>
+    <p _msttexthash="25288211" _msthash="1157">Replacing your windows with high-efficiency glass reduces your energy consumption, which translates into lower CO₂ emissions and a smaller carbon footprint.</p>
+    <p _msttexthash="11353108" _msthash="1158"><strong id="footKwh" _istranslated="1">0</strong> kWh/year saved · <strong id="footCo2" _istranslated="1">0</strong> kg CO₂/year less · <strong id="footEur" _istranslated="1">€ 0</strong>/year less energy costs.</p>
+    <p _msttexthash="7697859" _msthash="1159">Over 10 years: <strong id="footEur10" _istranslated="1">€ 0</strong> savings. A tangible figure for your sales file and your sustainability story.</p>
+  </div>
+  <div class="footer-box blue">
+    <h3 _msttexthash="12119822" _msthash="1160">📐 Technical information for the glass man</h3>
+    <p _msttexthash="23427326" _msthash="1161">For each window, the glass man needs: <strong _istranslated="1">width × height</strong>, measurement method and — if known — the glass thickness or rebate.</p>
+    <p _msttexthash="10099596" _msthash="1162">This is an <em _istranslated="1">indicative</em> measurement document. Always have the glass man check on site before ordering. Print or export as a PDF for the quote.</p>
+  </div>
+</div>
+
+<!-- Speciaal blok dat enkel in de PDF verschijnt, netjes achteraan als bijlage -->
+<div class="print-only" id="printDocsSection" _msthidden="9">
+  <h2 _msttexthash="2590601" _msthidden="1" _msthash="1163">Bijlagen — Overzicht stavingstukken</h2>
+  <table id="tblPrintDocs" _msthidden="8"><tbody><tr><td>Geen stavingstukken toegevoegd.</td></tr></tbody></table>
+</div>
+
+<script>
+/* ---------- data ---------- */
+const GLAS = {
+  enkel : { short:'Enkel',    Ug:5.75 },
+  dubbel: { short:'Dubbel',   Ug:2.85 },
+  hr    : { short:'HR',       Ug:1.60 },
+  hrplus: { short:'HR+',      Ug:1.30 },
+  hrpp  : { short:'HR++',     Ug:1.10 },
+  hrpp10: { short:'HR++ 1.0', Ug:1.00, sweet:true },
+  hrppp : { short:'HR+++',    Ug:0.65 },
+  vacuum: { short:'Vacuüm',   Ug:0.80 }
+};
+
+const PERIODES = [
+  { id:'pre1960',   label:'Vóór 1960',           min:0,    max:1959, raam:5.00 },
+  { id:'1960-1975', label:'1960 – 1975',         min:1960, max:1975, raam:4.00 },
+  { id:'1975-1985', label:'1975 – 1985',         min:1976, max:1985, raam:3.00 },
+  { id:'1985-1995', label:'1985 – 1995',         min:1986, max:1995, raam:2.50 },
+  { id:'1995-2005', label:'1995 – 2005',         min:1996, max:2005, raam:2.00 },
+  { id:'2005-2015', label:'2005 – 2015',         min:2006, max:2015, raam:1.50 },
+  { id:'2015+',     label:'Na 2015 (nieuwbouw)', min:2016, max:9999, raam:1.00 }
+];
+
+const DOC_TYPES = [
+  { value:'glasgarantie',     label:'Glasgarantie fabrikant' },
+  { value:'ug-verklaring',    label:'Ug-waarde verklaring' },
+  { value:'leveranciersfiche',label:'Leveranciersfiche / datasheet' },
+  { value:'subsidie',         label:'Subsidieaanvraag / bewijs' },
+  { value:'epb',              label:'EPB-attest / prestatiebewijs' },
+  { value:'factuur',          label:'Factuur / offerte' },
+  { value:'meetfiche',        label:'Meetfiche / foto' },
+  { value:'overig',           label:'Overig' }
+];
+
+const DEFAULT_ROOMS = [
+  'Veranda','Keuken','Living','Opberghok/stal','Schuifdeuren',
+  'Velux/dakvenster','Slaapkamer 1','Slaapkamer 2',
+  'Badkamer 1','Badkamer 2','Badkamer 3'
+];
+
+const $  = id => document.getElementById(id);
+const nf = (v,d=1) => (Number.isFinite(+v)?+v:0).toLocaleString('nl-BE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const nf0= v => nf(v,0);
+const esc= s => String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function periodFromYear(year){
+  const y = +year;
+  if (!Number.isFinite(y) || y < 1800) return null;
+  return PERIODES.find(p => y >= p.min && y <= p.max) || null;
+}
+
+/* ---------- row / state ---------- */
+let rowCounter = 0;
+function newRow(ruimte=''){
+  rowCounter++;
+  return {
+    id:'w'+Date.now()+'_'+rowCounter+'_'+Math.random().toString(36).slice(2,5),
+    ruimte, orient:'', type:'Vast',
+    methode:'effectief',
+    b:'', h:'', aantal:1,
+    sponning:'', glaslat:17, band:4,
+    dikte:'',
+    glasOud:'dubbel', glasNieuw:'hrpp10'
+  };
+}
+let docCounter = 0;
+function newDoc(){
+  docCounter++;
+  return {
+    id:'d'+Date.now()+'_'+docCounter+'_'+Math.random().toString(36).slice(2,5),
+    type:'glasgarantie', ref:'', fabrikant:'', datum:'', geldigTot:'', notitie:'',
+    fileName:'', fileSize:0, fileType:'', fileData:''
+  };
+}
+function defaultState(){
+  return {
+    project:{ naam:'', adres:'', bouwjaar:'', verbouwjaar:'',
+              uf:2.0, frame:70, hdd:65000, prijs:0.45, co2:0.20, unit:'mm' },
+    glasman:{ naam:'', contact:'', adres:'', tel:'', email:'', btw:'', offertNr:'', offertDatum:'', offertGeldig:'' },
+    docs: [],
+    windows: DEFAULT_ROOMS.map(r => newRow(r))
+  };
+}
+
+function migrateProject(p){
+  if (p.bouwjaar === undefined || p.bouwjaar === null) p.bouwjaar = '';
+  if (p.verbouwjaar === undefined || p.verbouwjaar === null) p.verbouwjaar = '';
+  if (p.periode && !p.bouwjaar){
+    const map = {
+      'pre1960':1950, '1960-1975':1968, '1975-1985':1980,
+      '1985-1995':1990, '1995-2005':2000, '2005-2015':2010, '2015+':2020
+    };
+    p.bouwjaar = String(map[p.periode] || '');
+  }
+  delete p.periode;
+  return p;
+}
+
+function loadState(){
+  try{ const s = JSON.parse(localStorage.getItem('glasmeetstaat-v4'));
+    if (s && s.project && s.glasman && Array.isArray(s.windows)){
+      migrateProject(s.project);
+      s.windows.forEach(w => {
+        if (!w.methode) w.methode = 'effectief';
+        if (w.dikte === undefined) w.dikte = '';
+      });
+      if (!s.project.unit) s.project.unit = 'mm';
+      if (s.project.prijs === 0.12) s.project.prijs = 0.45;
+      if (!Array.isArray(s.docs)) s.docs = [];
+      return s;
+    }
+  }catch{}
+  return defaultState();
+}
+function saveState(){
+  try{ localStorage.setItem('glasmeetstaat-v4', JSON.stringify(state)); }
+  catch(e){
+    if (e && (e.name === 'QuotaExceededError' || e.code === 22)){
+      alert('Opslag vol! Verwijder enkele bijlagen of grote stavingstukken om ruimte vrij te maken.');
+    }
+  }
+}
+let state = loadState();
+
+/* ---------- eenheid ---------- */
+function unit(){ return state.project.unit || 'mm'; }
+function dispVal(v){
+  if (v === '' || v === null || v === undefined) return '';
+  const num = parseFloat(v);
+  if (!Number.isFinite(num)) return '';
+  if (unit() === 'cm'){
+    const cm = num / 10;
+    return Number.isInteger(cm) ? cm : +cm.toFixed(1);
+  }
+  return num;
+}
+function toMm(raw){
+  if (raw === '' || raw === null || raw === undefined) return '';
+  const num = parseFloat(raw);
+  if (!Number.isFinite(num)) return '';
+  const mm = unit() === 'cm' ? num * 10 : num;
+  return String(+mm.toFixed(3));
+}
+function stepAttr(){ return unit() === 'cm' ? '0.1' : '1'; }
+
+/* ---------- berekeningen ---------- */
+function glasdikteVan(w){
+  if (w.methode === 'effectief') return parseFloat(w.dikte) || 0;
+  return (+w.sponning||0) - (+w.glaslat||0) - 2*(+w.band||0);
+}
+
+function calcWindow(w){
+  const b  = parseFloat(w.b)  || 0;
+  const h  = parseFloat(w.h)  || 0;
+  const wf = +state.project.frame || 0;
+  const n  = Math.max(1, parseInt(w.aantal) || 1);
+  const glasdikte = glasdikteVan(w);
+
+  const ugOud   = GLAS[w.glasOud]?.Ug   ?? 0;
+  const ugNieuw = GLAS[w.glasNieuw]?.Ug ?? 0;
+  const uf      = +state.project.uf || 0;
+  const hdd     = +state.project.hdd || 0;
+  const prijs   = +state.project.prijs || 0;
+  const co2f    = +state.project.co2 || 0;
+
+  if (!b || !h){
+    return {
+      n, b, h, wf, bcm:b/10, hcm:h/10,
+      Ag:0, Af:0, Atot:0, AgTot:0, AtotTot:0,
+      Pglas_mm:0, Pglas_cm:0, Pkader_mm:0, Pkader_cm:0,
+      glasdikte, ugOud, ugNieuw,
+      uwOud:0, uwNieuw:0, dU:0,
+      kWhOld:0, kWhNew:0, eurOld:0, eurNew:0, co2Old:0, co2New:0,
+      kWh:0, eur:0, co2:0
+    };
+  }
+
+  const bm=b/1000, hm=h/1000, wfm=wf/1000;
+  const Ag   = bm*hm;
+  const Ao   = (bm+2*wfm)*(hm+2*wfm);
+  const Af   = Math.max(0, Ao-Ag);
+  const Atot = Ag+Af;
+
+  const Pglas_mm  = 2*(b+h);
+  const Pkader_mm = 2*(b+h) + 8*wf;
+
+  const uwOud   = (Ag*ugOud   + Af*uf) / Math.max(1e-9, Atot);
+  const uwNieuw = (Ag*ugNieuw + Af*uf) / Math.max(1e-9, Atot);
+  const dU      = Math.max(0, uwOud - uwNieuw);
+
+  const kWhOld = uwOud   * Atot * hdd / 1000 * n;
+  const kWhNew = uwNieuw * Atot * hdd / 1000 * n;
+  const eurOld = kWhOld * prijs;
+  const eurNew = kWhNew * prijs;
+  const co2Old = kWhOld * co2f;
+  const co2New = kWhNew * co2f;
+
+  return {
+    n, b, h, wf, bcm:b/10, hcm:h/10,
+    Ag, Af, Atot, AgTot:Ag*n, AtotTot:Atot*n,
+    Pglas_mm, Pglas_cm:Pglas_mm/10, Pkader_mm, Pkader_cm:Pkader_mm/10,
+    glasdikte, ugOud, ugNieuw, uwOud, uwNieuw, dU,
+    kWhOld, kWhNew, eurOld, eurNew, co2Old, co2New,
+    kWh:Math.max(0, kWhOld-kWhNew),
+    eur:Math.max(0, eurOld-eurNew),
+    co2:Math.max(0, co2Old-co2New)
+  };
+}
+function dikteBadge(d_mm){
+  if (!d_mm) return `<span class="badge info">–</span>`;
+  const u = unit();
+  const disp = u === 'cm' ? (d_mm/10).toFixed(1) : d_mm;
+  if (d_mm >= 20) return `<span class="badge good">${disp} ${u}</span>`;
+  if (d_mm >= 12) return `<span class="badge warn">${disp} ${u}</span>`;
+  return `<span class="badge bad">${disp} ${u}</span>`;
+}
+
+/* ---------- selects ---------- */
+const ORIENT_OPTS = ['','N','NO','O','ZO','Z','ZW','W','NW'];
+const TYPE_OPTS   = ['Vast','Draai-kip','Schuif','Dakvenster / Velux','Deur'];
+const METHODE_OPTS = [
+  { value:'effectief', label:'Effectief opgemeten' },
+  { value:'sponning',  label:'Sponning + glaslat' }
+];
+const GLAS_OPTS = Object.entries(GLAS);
+function opt(v,label,cur){ return `<option value="${esc(v)}"${v===cur?' selected':''}>${esc(label)}</option>`; }
+function selectOrient(cur){ return `<select data-field="orient">${ORIENT_OPTS.map(o=>opt(o,o||'–',cur)).join('')}</select>`; }
+function selectType(cur){ return `<select data-field="type">${TYPE_OPTS.map(o=>opt(o,o,cur)).join('')}</select>`; }
+function selectMethode(cur){ return `<select data-field="methode">${METHODE_OPTS.map(o=>opt(o.value,o.label,cur)).join('')}</select>`; }
+function selectGlas(cur,field){
+  return `<select data-field="${field}">${GLAS_OPTS.map(([k,v])=>
+    opt(k,(v.sweet?'⭐ ':'')+v.short+' — '+nf(v.Ug,2),cur)
+  ).join('')}</select>`;
+}
+function selectDocType(cur){
+  return `<select data-doc-field="type">${DOC_TYPES.map(t=>opt(t.value,t.label,cur)).join('')}</select>`;
+}
+
+function dikteCell(w, c){
+  if (w.methode === 'effectief'){
+    return `<input data-field="dikte" type="number" min="0" step="${stepAttr()}"
+                   value="${esc(dispVal(w.dikte))}" placeholder="gemeten (${unit()})" style="min-width:80px">`;
+  }
+  return dikteBadge(c.glasdikte);
+}
+
+/* ---------- meetstaat ---------- */
+function rowHtml(w){
+  const c = calcWindow(w);
+  const eff = w.methode === 'effectief';
+  const step = stepAttr();
+  return `<tr data-id="${esc(w.id)}">
+    <td><input data-field="ruimte" value="${esc(w.ruimte)}" style="min-width:120px"></td>
+    <td>${selectOrient(w.orient)}</td>
+    <td>${selectType(w.type)}</td>
+    <td>${selectMethode(w.methode)}</td>
+    <td><input data-field="b" type="number" min="0" step="${step}" value="${esc(dispVal(w.b))}"></td>
+    <td><input data-field="h" type="number" min="0" step="${step}" value="${esc(dispVal(w.h))}"></td>
+    <td><input data-field="aantal" type="number" min="1" step="1" value="${esc(w.aantal)}" style="min-width:50px"></td>
+    <td><input data-field="sponning" type="number" min="0" step="${step}" value="${esc(dispVal(w.sponning))}"${eff?' disabled title="Niet nodig bij effectief opgemeten"':''}></td>
+    <td><input data-field="glaslat" type="number" min="0" step="${step}" value="${esc(dispVal(w.glaslat))}"${eff?' disabled':''}></td>
+    <td><input data-field="band" type="number" min="0" step="${step}" value="${esc(dispVal(w.band))}"${eff?' disabled':''}></td>
+    <td data-calc="glasdikte">${dikteCell(w, c)}</td>
+    <td>${selectGlas(w.glasOud,'glasOud')}</td>
+    <td>${selectGlas(w.glasNieuw,'glasNieuw')}</td>
+    <td data-calc="Pglas_mm">${nf0(c.Pglas_mm)}</td>
+    <td data-calc="Pglas_cm">${nf(c.Pglas_cm,1)}</td>
+    <td data-calc="uwOud">${nf(c.uwOud,2)}</td>
+    <td data-calc="uwNieuw">${nf(c.uwNieuw,2)}</td>
+    <td data-calc="dU"><strong>${nf(c.dU,2)}</strong></td>
+    <td data-calc="kWh">${nf0(c.kWh)}</td>
+    <td data-calc="eur">€ ${nf0(c.eur)}</td>
+    <td data-calc="co2">${nf0(c.co2)}</td>
+    <td class="no-print"><button class="danger" data-del="${esc(w.id)}" title="Verwijderen">✕</button></td>
+  </tr>`;
+}
+
+function footMeetHtml(calcs){
+  const sumN = calcs.reduce((s,c)=>s+c.n,0);
+  const sumP = calcs.reduce((s,c)=>s+c.Pglas_mm*c.n,0);
+  const sumK = calcs.reduce((s,c)=>s+c.kWh,0);
+  const sumE = calcs.reduce((s,c)=>s+c.eur,0);
+  const sumC = calcs.reduce((s,c)=>s+c.co2,0);
+  return `<tfoot><tr>
+    <td colspan="6">Totaal</td><td>${sumN}</td><td colspan="4"></td><td colspan="2"></td>
+    <td>${nf0(sumP)}</td><td>${nf(sumP/10,1)}</td>
+    <td></td><td></td><td></td>
+    <td>${nf0(sumK)}</td><td>€ ${nf0(sumE)}</td><td>${nf0(sumC)}</td>
+    <td class="no-print"></td>
+  </tr></tfoot>`;
+}
+
+function renderTable(){
+  const calcs = state.windows.map(w => calcWindow(w));
+  const u = unit();
+  $('unitLabel').textContent = u;
+  const head = `<thead><tr>
+    <th>Ruimte</th><th>Oriënt.</th><th>Type</th><th>Methode</th>
+    <th>Breedte (${u})</th><th>Hoogte (${u})</th><th>Aantal</th>
+    <th>Sponning (${u})</th><th>Glaslat (${u})</th><th>Glasband (${u})</th>
+    <th>Glasdikte</th>
+    <th>Huidig glas</th><th>Nieuw glas</th>
+    <th>Omtrek glas (mm)</th><th>Omtrek glas (cm)</th>
+    <th>Uw oud</th><th>Uw nieuw</th><th>ΔU</th>
+    <th>kWh/j</th><th>€/j</th><th>kg CO₂/j</th>
+    <th class="no-print"></th>
+  </tr></thead>`;
+  $('tblMeet').innerHTML = head + '<tbody>' + state.windows.map(rowHtml).join('') + '</tbody>' + footMeetHtml(calcs);
+}
+
+/* ---------- Stavingstukken ---------- */
+function fileCellHtml(d){
+  if (!d.fileName){
+    return `<button class="primary no-print" data-upload="${esc(d.id)}">📎 Uploaden</button>`;
+  }
+  const sizeKb = Math.round((d.fileSize||0)/1024);
+  return `<a href="${esc(d.fileData||'#')}" download="${esc(d.fileName)}" class="badge good" title="Download (${sizeKb} KB)">📄 ${esc(d.fileName)}</a>
+          <button class="no-print" data-upload="${esc(d.id)}" title="Vervangen" style="margin-left:4px;padding:2px 6px;font-size:.7rem">🔄</button>
+          <button class="danger no-print" data-removefile="${esc(d.id)}" title="Verwijder bestand" style="margin-left:2px;padding:2px 6px;font-size:.7rem">✕</button>`;
+}
+
+function docRowHtml(d){
+  return `<tr data-doc-id="${esc(d.id)}">
+    <td>${selectDocType(d.type)}</td>
+    <td><input data-doc-field="ref" value="${esc(d.ref||'')}" style="min-width:100px" placeholder="bv. GL-2024-001"></td>
+    <td><input data-doc-field="fabrikant" value="${esc(d.fabrikant||'')}" style="min-width:130px" placeholder="bv. Glaverbel"></td>
+    <td><input data-doc-field="datum" type="date" value="${esc(d.datum||'')}"></td>
+    <td><input data-doc-field="geldigTot" type="date" value="${esc(d.geldigTot||'')}"></td>
+    <td><input data-doc-field="notitie" value="${esc(d.notitie||'')}" style="min-width:180px"></td>
+    <td style="text-align:left">${fileCellHtml(d)}</td>
+    <td class="no-print"><button class="danger" data-del-doc="${esc(d.id)}" title="Verwijderen">✕</button></td>
+  </tr>`;
+}
+
+function renderDocs(){
+  const t = $('tblDocs');
+  if (!t) return;
+  if (state.docs.length === 0){
+    t.innerHTML = `<tbody><tr><td colspan="8" class="doc-empty">Nog geen stavingstukken toegevoegd. Klik op "➕ Document toevoegen".</td></tr></tbody>`;
+    return;
+  }
+  const head = `<thead><tr>
+    <th>Type</th>
+    <th>Referentie / doc. nr.</th>
+    <th>Fabrikant / leverancier</th>
+    <th>Datum</th>
+    <th>Geldig tot</th>
+    <th>Notitie</th>
+    <th>Bestand</th>
+    <th class="no-print"></th>
+  </tr></thead>`;
+  const rows = state.docs.map(docRowHtml).join('');
+  const foot = `<tfoot><tr>
+    <td colspan="5">Totaal: ${state.docs.length} document(en)</td>
+    <td></td>
+    <td style="text-align:left">${state.docs.filter(d=>d.fileName).length} met bestand</td>
+    <td class="no-print"></td>
+  </tr></tfoot>`;
+  t.innerHTML = head + '<tbody>' + rows + '</tbody>' + foot;
+}
+
+/* ---------- Print-only docs rendering ---------- */
+function renderPrintDocs() {
+  const t = $('tblPrintDocs');
+  if (!t) return;
+  if (state.docs.length === 0) {
+    t.innerHTML = `<tbody><tr><td>Geen stavingstukken toegevoegd.</td></tr></tbody>`;
+    return;
+  }
+  
+  // Sorteer op type voor een nette weergave
+  const sortedDocs = [...state.docs].sort((a,b) => {
+    const typeA = DOC_TYPES.find(t => t.value === a.type)?.label || a.type;
+    const typeB = DOC_TYPES.find(t => t.value === b.type)?.label || b.type;
+    return typeA.localeCompare(typeB);
+  });
+
+  const head = `<thead><tr>
+    <th>Type document</th>
+    <th>Referentie</th>
+    <th>Fabrikant / Leverancier</th>
+    <th>Datum</th>
+    <th>Geldig tot</th>
+    <th>Notitie</th>
+    <th>Bestandsnaam</th>
+  </tr></thead>`;
+  const rows = sortedDocs.map(d => {
+    const typeLabel = (DOC_TYPES.find(t => t.value === d.type) || {label:d.type}).label;
+    return `<tr>
+      <td>${esc(typeLabel)}</td>
+      <td>${esc(d.ref||'-')}</td>
+      <td>${esc(d.fabrikant||'-')}</td>
+      <td>${esc(d.datum||'-')}</td>
+      <td>${esc(d.geldigTot||'-')}</td>
+      <td>${esc(d.notitie||'-')}</td>
+      <td>${esc(d.fileName||'-')}</td>
+    </tr>`;
+  }).join('');
+  t.innerHTML = head + '<tbody>' + rows + '</tbody>';
+}
+
+/* ---------- KPI's ---------- */
+function renderKPIs(){
+  const calcs = state.windows.map(w => calcWindow(w));
+  const totAg = calcs.reduce((s,c)=>s+c.AgTot,0);
+  const totP  = calcs.reduce((s,c)=>s+c.Pglas_mm*c.n,0)/1000;
+  const totK  = calcs.reduce((s,c)=>s+c.kWh,0);
+  const totE  = calcs.reduce((s,c)=>s+c.eur,0);
+  const totC  = calcs.reduce((s,c)=>s+c.co2,0);
+  $('kpiTot').innerHTML = `
+    <div class="kpi"><div class="label">Glasoppervlakte</div><div class="value">${nf(totAg,2)} <small>m²</small></div></div>
+    <div class="kpi"><div class="label">Totale omtrek glas</div><div class="value">${nf(totP,2)} <small>m</small></div></div>
+    <div class="kpi"><div class="label">Energiebesparing</div><div class="value">${nf0(totK)} <small>kWh/j</small></div></div>
+    <div class="kpi"><div class="label">Geldbesparing</div><div class="value">€ ${nf0(totE)} <small>/jaar</small></div></div>
+    <div class="kpi"><div class="label">CO₂-besparing</div><div class="value">${nf0(totC)} <small>kg/j</small></div></div>
+    <div class="kpi"><div class="label">Over 10 jaar</div><div class="value">€ ${nf0(totE*10)}</div></div>`;
+}
+
+/* ---------- Vroeger vs Nu ---------- */
+function renderVs(){
+  const calcs = state.windows.map(w => ({ w, c:calcWindow(w) }));
+  const groups = {};
+  calcs.forEach(({w,c}) => {
+    const k = w.ruimte || 'Onbekend';
+    if (!groups[k]) groups[k] = { naam:k, uwOW:0, uwNW:0, At:0,
+      kWhOld:0, kWhNew:0, eurOld:0, eurNew:0, co2Old:0, co2New:0 };
+    const g = groups[k];
+    g.uwOW += c.uwOud   * c.AtotTot;
+    g.uwNW += c.uwNieuw * c.AtotTot;
+    g.At   += c.AtotTot;
+    g.kWhOld += c.kWhOld; g.kWhNew += c.kWhNew;
+    g.eurOld += c.eurOld; g.eurNew += c.eurNew;
+    g.co2Old += c.co2Old; g.co2New += c.co2New;
+  });
+
+  const head = `<thead><tr>
+    <th>Ruimte</th>
+    <th>Uw vroeger</th><th>Uw nu</th><th>ΔU</th>
+    <th>Verbruik vroeger (kWh/j)</th><th>Verbruik nu (kWh/j)</th><th>Besparing (kWh/j)</th>
+    <th>Kost vroeger (€/j)</th><th>Kost nu (€/j)</th><th>Besparing (€/j)</th>
+    <th>CO₂ vroeger (kg/j)</th><th>CO₂ nu (kg/j)</th><th>Besparing (kg/j)</th>
+  </tr></thead>`;
+
+  const rows = Object.values(groups).map(g => {
+    const uwO = g.At ? g.uwOW/g.At : 0;
+    const uwN = g.At ? g.uwNW/g.At : 0;
+    const dU  = uwO - uwN;
+    const isEmpty = g.At === 0; // <-- Check voor lege rijen
+    return `<tr class="${isEmpty ? 'empty-row' : ''}">
+      <td>${esc(g.naam)}</td>
+      <td class="vs-bad">${nf(uwO,2)}</td>
+      <td class="vs-good">${nf(uwN,2)}</td>
+      <td class="vs-sum">${nf(dU,2)}</td>
+      <td class="vs-bad">${nf0(g.kWhOld)}</td>
+      <td class="vs-good">${nf0(g.kWhNew)}</td>
+      <td class="vs-good">−${nf0(g.kWhOld-g.kWhNew)}</td>
+      <td class="vs-bad">€ ${nf0(g.eurOld)}</td>
+      <td class="vs-good">€ ${nf0(g.eurNew)}</td>
+      <td class="vs-good">−€ ${nf0(g.eurOld-g.eurNew)}</td>
+      <td class="vs-bad">${nf0(g.co2Old)}</td>
+      <td class="vs-good">${nf0(g.co2New)}</td>
+      <td class="vs-good">−${nf0(g.co2Old-g.co2New)}</td>
+    </tr>`;
+  }).join('');
+
+  const T = { uwOW:0, uwNW:0, At:0, kWhOld:0, kWhNew:0, eurOld:0, eurNew:0, co2Old:0, co2New:0 };
+  Object.values(groups).forEach(g => {
+    T.uwOW+=g.uwOW; T.uwNW+=g.uwNW; T.At+=g.At;
+    T.kWhOld+=g.kWhOld; T.kWhNew+=g.kWhNew;
+    T.eurOld+=g.eurOld; T.eurNew+=g.eurNew;
+    T.co2Old+=g.co2Old; T.co2New+=g.co2New;
+  });
+  const foot = `<tfoot><tr>
+    <td>Totaal</td>
+    <td>${nf(T.At?T.uwOW/T.At:0,2)}</td>
+    <td>${nf(T.At?T.uwNW/T.At:0,2)}</td>
+    <td>${nf(T.At?(T.uwOW-T.uwNW)/T.At:0,2)}</td>
+    <td>${nf0(T.kWhOld)}</td><td>${nf0(T.kWhNew)}</td><td>−${nf0(T.kWhOld-T.kWhNew)}</td>
+    <td>€ ${nf0(T.eurOld)}</td><td>€ ${nf0(T.eurNew)}</td><td>−€ ${nf0(T.eurOld-T.eurNew)}</td>
+    <td>${nf0(T.co2Old)}</td><td>${nf0(T.co2New)}</td><td>−${nf0(T.co2Old-T.co2New)}</td>
+  </tr></tfoot>`;
+
+  $('tblVs').innerHTML = head + '<tbody>' + rows + '</tbody>' + foot;
+}
+
+/* ---------- Samenvatting per ruimte ---------- */
+function renderRoomSummary(){
+  const calcs = state.windows.map(w => ({ w, c:calcWindow(w) }));
+  const groups = {};
+  calcs.forEach(({w,c}) => {
+    const k = w.ruimte || 'Onbekend';
+    if (!groups[k]) groups[k] = { naam:k, n:0, Ag:0, At:0, P:0, uwOW:0, uwNW:0, kWh:0, eur:0, co2:0 };
+    const g = groups[k];
+    g.n += c.n; g.Ag += c.AgTot; g.At += c.AtotTot; g.P += c.Pglas_mm*c.n/1000;
+    g.uwOW += c.uwOud*c.AtotTot; g.uwNW += c.uwNieuw*c.AtotTot;
+    g.kWh += c.kWh; g.eur += c.eur; g.co2 += c.co2;
+  });
+
+  const head = `<thead><tr>
+    <th>Ruimte</th><th># ramen</th><th>Glas m²</th><th>Raam m²</th><th>Omtrek (m)</th>
+    <th>Uw oud</th><th>Uw nieuw</th><th>ΔU</th>
+    <th>kWh/j</th><th>€/j</th><th>kg CO₂/j</th><th>€ /10 j</th>
+  </tr></thead>`;
+  const rows = Object.values(groups).map(g => {
+    const uwO = g.At ? g.uwOW/g.At : 0;
+    const uwN = g.At ? g.uwNW/g.At : 0;
+    const isEmpty = g.At === 0; // <-- Check voor lege rijen
+    return `<tr class="${isEmpty ? 'empty-row' : ''}">
+      <td>${esc(g.naam)}</td><td>${g.n}</td>
+      <td>${nf(g.Ag,2)}</td><td>${nf(g.At,2)}</td><td>${nf(g.P,2)}</td>
+      <td class="vs-bad">${nf(uwO,2)}</td>
+      <td class="vs-good">${nf(uwN,2)}</td>
+      <td><strong>${nf(uwO-uwN,2)}</strong></td>
+      <td>${nf0(g.kWh)}</td><td>€ ${nf0(g.eur)}</td><td>${nf0(g.co2)}</td>
+      <td>€ ${nf0(g.eur*10)}</td>
+    </tr>`;
+  }).join('');
+
+  const T = { n:0, Ag:0, At:0, P:0, uwOW:0, uwNW:0, kWh:0, eur:0, co2:0 };
+  Object.values(groups).forEach(g => {
+    T.n+=g.n; T.Ag+=g.Ag; T.At+=g.At; T.P+=g.P;
+    T.uwOW+=g.uwOW; T.uwNW+=g.uwNW;
+    T.kWh+=g.kWh; T.eur+=g.eur; T.co2+=g.co2;
+  });
+  const foot = `<tfoot><tr>
+    <td>Totaal</td><td>${T.n}</td>
+    <td>${nf(T.Ag,2)}</td><td>${nf(T.At,2)}</td><td>${nf(T.P,2)}</td>
+    <td>${nf(T.At?T.uwOW/T.At:0,2)}</td>
+    <td>${nf(T.At?T.uwNW/T.At:0,2)}</td>
+    <td>${nf(T.At?(T.uwOW-T.uwNW)/T.At:0,2)}</td>
+    <td>${nf0(T.kWh)}</td><td>€ ${nf0(T.eur)}</td>
+    <td>${nf0(T.co2)}</td><td>€ ${nf0(T.eur*10)}</td>
+  </tr></tfoot>`;
+  $('tblRuimte').innerHTML = head + '<tbody>' + rows + '</tbody>' + foot;
+}
+
+/* ---------- footer + print header ---------- */
+function renderFooterNumbers(){
+  const calcs = state.windows.map(w => calcWindow(w));
+  const totK = calcs.reduce((s,c)=>s+c.kWh,0);
+  const totE = calcs.reduce((s,c)=>s+c.eur,0);
+  const totC = calcs.reduce((s,c)=>s+c.co2,0);
+  $('footKwh').textContent = nf0(totK);
+  $('footCo2').textContent = nf0(totC);
+  $('footEur').textContent = '€ ' + nf0(totE);
+  $('footEur10').textContent = '€ ' + nf0(totE*10);
+}
+
+function renderPrintHeader(){
+  const p = state.project, g = state.glasman;
+  const b = +p.bouwjaar || 0;
+  const v = +p.verbouwjaar || 0;
+  const eff = Math.max(b, v);
+  const per = periodFromYear(eff);
+  const perLabel = per ? per.label : '–';
+
+  const yearLine = [];
+  if (b) yearLine.push(`Bouwjaar: ${b}`);
+  if (v) yearLine.push(`Verbouwjaar: ${v}`);
+  if (!yearLine.length) yearLine.push('Bouwjaar: –');
+
+  let html = `<div class="print-header-block">
+    <h1>Glasmeetstaat &amp; Warmteverlies Rapport</h1>
+    <div class="print-header-info">
+      <div class="print-header-col">
+        <h3>Projectgegevens</h3>
+        <p><strong>Project:</strong> ${esc(p.naam || 'Zonder naam')}</p>
+        <p><strong>Adres:</strong> ${esc(p.adres || '-')}</p>
+        <p><strong>Jaartallen:</strong> ${yearLine.join(' · ')}</p>
+        <p><strong>Referentieperiode:</strong> ${esc(perLabel)}</p>
+        <p><strong>Datum opmaak:</strong> ${new Date().toLocaleDateString('nl-BE')}</p>
+      </div>
+      <div class="print-header-col">
+        <h3>Uitvoerende partij (Glasman)</h3>`;
+        
+  if (g.naam) html += `<p><strong>Bedrijf:</strong> ${esc(g.naam)}</p>`;
+  if (g.contact) html += `<p><strong>Contact:</strong> ${esc(g.contact)}</p>`;
+  if (g.adres) html += `<p><strong>Adres:</strong> ${esc(g.adres)}</p>`;
+  if (g.tel) html += `<p><strong>Telefoon:</strong> ${esc(g.tel)}</p>`;
+  if (g.email) html += `<p><strong>E-mail:</strong> ${esc(g.email)}</p>`;
+  if (g.btw) html += `<p><strong>BTW:</strong> ${esc(g.btw)}</p>`;
+  
+  if (g.offertNr || g.offertDatum || g.offertGeldig){
+    const o = [];
+    if (g.offertNr)     o.push(`Offerte ${esc(g.offertNr)}`);
+    if (g.offertDatum)  o.push(`van ${esc(g.offertDatum)}`);
+    if (g.offertGeldig) o.push(`geldig tot ${esc(g.offertGeldig)}`);
+    html += `<p><strong>Offerte:</strong> ${o.join(' · ')}</p>`;
+  }
+  
+  html += `</div></div></div>`;
+  $('printHeader').innerHTML = html;
+}
+
+function renderPeriodHint(){
+  const b = +state.project.bouwjaar || 0;
+  const v = +state.project.verbouwjaar || 0;
+  const eff = Math.max(b, v);
+  if (!eff){
+    $('periodHint').textContent = 'Vul een bouwjaar (en eventueel verbouwjaar) in om de referentieperiode en -Uw te zien. Energieprijs standaard € 0,45/kWh.';
+    return;
+  }
+  const per = periodFromYear(eff);
+  if (!per){
+    $('periodHint').textContent = 'Vul een geldig jaartal in (1800–2100).';
+    return;
+  }
+  const parts = [];
+  if (b) parts.push(`bouwjaar ${b}`);
+  if (v) parts.push(`verbouwjaar ${v}`);
+  const bron = (v && v > b) ? 'verbouwjaar' : 'bouwjaar';
+  $('periodHint').textContent = `${parts.join(' · ')} → referentieperiode ${per.label} (${bron}) → referentie-Uw ${nf(per.raam,2)} W/m²K (indicatief). Energieprijs standaard € 0,45/kWh.`;
+}
+
+/* ---------- volledige render ---------- */
+function renderAll(){
+  renderPeriodHint();
+  renderPrintHeader();
+  renderDocs();
+  renderPrintDocs(); // Render de speciale print-bijlage
+  renderTable();
+  renderKPIs();
+  renderVs();
+  renderRoomSummary();
+  renderFooterNumbers();
+  saveState();
+}
+
+function updateRowCalc(tr, w){
+  const c = calcWindow(w);
+  tr.querySelector('[data-calc="Pglas_mm"]').textContent = nf0(c.Pglas_mm);
+  tr.querySelector('[data-calc="Pglas_cm"]').textContent = nf(c.Pglas_cm,1);
+  const dc = tr.querySelector('[data-calc="glasdikte"]');
+  if (w.methode === 'sponning'){
+    dc.innerHTML = dikteBadge(c.glasdikte);
+  }
+  tr.querySelector('[data-calc="uwOud"]').textContent    = nf(c.uwOud,2);
+  tr.querySelector('[data-calc="uwNieuw"]').textContent  = nf(c.uwNieuw,2);
+  tr.querySelector('[data-calc="dU"]').innerHTML         = '<strong>'+nf(c.dU,2)+'</strong>';
+  tr.querySelector('[data-calc="kWh"]').textContent      = nf0(c.kWh);
+  tr.querySelector('[data-calc="eur"]').textContent      = '€ '+nf0(c.eur);
+  tr.querySelector('[data-calc="co2"]').textContent      = nf0(c.co2);
+}
+function refreshFoot(){
+  const t = $('tblMeet');
+  const old = t.querySelector('tfoot');
+  if (old) old.outerHTML = footMeetHtml(state.windows.map(w => calcWindow(w)));
+}
+function onTableChange(tr){
+  const w = state.windows.find(x => x.id === tr.dataset.id);
+  if (!w) return;
+  updateRowCalc(tr, w);
+  refreshFoot();
+  renderKPIs();
+  renderVs();
+  renderRoomSummary();
+  renderFooterNumbers();
+  saveState();
+}
+
+/* ---------- project & glasman ---------- */
+function initProject(){
+  const bind = (id, key, type) => {
+    const el = $(id);
+    el.value = state.project[key] ?? '';
+    const h = () => {
+      state.project[key] = type === 'number' ? parseFloat(el.value) : el.value;
+      renderPeriodHint();
+      renderPrintHeader();
+      renderTable();
+      renderKPIs();
+      renderVs();
+      renderRoomSummary();
+      renderFooterNumbers();
+      saveState();
+    };
+    el.addEventListener('input', h);
+    el.addEventListener('change', h);
+  };
+  bind('pNaam','naam','text');
+  bind('pAdres','adres','text');
+  bind('pBouwjaar','bouwjaar','text');
+  bind('pVerbouwjaar','verbouwjaar','text');
+  bind('pUf','uf','number');
+  bind('pFrame','frame','number');
+  bind('pHdd','hdd','number');
+  bind('pPrijs','prijs','number');
+  bind('pCo2','co2','number');
+
+  const setUnit = (u) => {
+    state.project.unit = u;
+    $('unitMm').checked = (u === 'mm');
+    $('unitCm').checked = (u === 'cm');
+    renderTable();
+    renderKPIs();
+    renderVs();
+    renderRoomSummary();
+    renderFooterNumbers();
+    renderPrintHeader();
+    saveState();
+  };
+  $('unitMm').addEventListener('change', () => setUnit('mm'));
+  $('unitCm').addEventListener('change', () => setUnit('cm'));
+  $('unitMm').checked = (unit() === 'mm');
+  $('unitCm').checked = (unit() === 'cm');
+}
+
+function initGlasman(){
+  const F = [
+    ['naam','gNaam'], ['contact','gContact'], ['adres','gAdres'],
+    ['tel','gTel'], ['email','gEmail'], ['btw','gBtw'],
+    ['offertNr','gOffertNr'], ['offertDatum','gOffertDatum'], ['offertGeldig','gOffertGeldig']
+  ];
+  F.forEach(([k,id]) => {
+    const el = $(id);
+    el.value = state.glasman[k] ?? '';
+    const h = () => { state.glasman[k] = el.value; renderPrintHeader(); saveState(); };
+    el.addEventListener('input', h);
+    el.addEventListener('change', h);
+  });
+}
+
+/* ---------- events ---------- */
+const DIM_FIELDS = ['b','h','sponning','glaslat','band','dikte'];
+let pendingUploadId = null;
+
+function initEvents(){
+  $('tblMeet').addEventListener('input', e => {
+    const tr = e.target.closest('tr');
+    if (!tr || !tr.dataset.id) return;
+    const field = e.target.dataset.field;
+    if (!field) return;
+    const w = state.windows.find(x => x.id === tr.dataset.id);
+    if (!w) return;
+    w[field] = DIM_FIELDS.includes(field) ? toMm(e.target.value) : e.target.value;
+    onTableChange(tr);
+  });
+  $('tblMeet').addEventListener('change', e => {
+    if (e.target.tagName !== 'SELECT') return;
+    const tr = e.target.closest('tr');
+    if (!tr) return;
+    const field = e.target.dataset.field;
+    if (!field) return;
+    const w = state.windows.find(x => x.id === tr.dataset.id);
+    if (!w) return;
+    w[field] = e.target.value;
+    if (field === 'methode'){
+      renderTable();
+      renderKPIs();
+      renderVs();
+      renderRoomSummary();
+      renderFooterNumbers();
+      saveState();
+    } else {
+      onTableChange(tr);
+    }
+  });
+  $('tblMeet').addEventListener('click', e => {
+    const btn = e.target.closest('[data-del]');
+    if (!btn) return;
+    const id = btn.getAttribute('data-del');
+    state.windows = state.windows.filter(w => w.id !== id);
+    renderAll();
+  });
+
+  /* --- Stavingstukken events --- */
+  $('tblDocs').addEventListener('input', e => {
+    const tr = e.target.closest('tr');
+    if (!tr || !tr.dataset.docId) return;
+    const field = e.target.dataset.docField;
+    if (!field) return;
+    const d = state.docs.find(x => x.id === tr.dataset.docId);
+    if (!d) return;
+    d[field] = e.target.value;
+    renderPrintDocs(); // update achterliggende print-tabel
+    saveState();
+  });
+  $('tblDocs').addEventListener('change', e => {
+    if (e.target.tagName !== 'SELECT') return;
+    const tr = e.target.closest('tr');
+    if (!tr || !tr.dataset.docId) return;
+    const field = e.target.dataset.docField;
+    if (!field) return;
+    const d = state.docs.find(x => x.id === tr.dataset.docId);
+    if (!d) return;
+    d[field] = e.target.value;
+    renderPrintDocs(); // update achterliggende print-tabel
+    saveState();
+  });
+  $('tblDocs').addEventListener('click', e => {
+    const delBtn = e.target.closest('[data-del-doc]');
+    if (delBtn){
+      if (!confirm('Dit stavingstuk verwijderen?')) return;
+      const id = delBtn.getAttribute('data-del-doc');
+      state.docs = state.docs.filter(d => d.id !== id);
+      renderDocs(); renderPrintDocs(); saveState();
+      return;
+    }
+    const upBtn = e.target.closest('[data-upload]');
+    if (upBtn){
+      pendingUploadId = upBtn.getAttribute('data-upload');
+      $('docFileInput').click();
+      return;
+    }
+    const rmBtn = e.target.closest('[data-removefile]');
+    if (rmBtn){
+      const id = rmBtn.getAttribute('data-removefile');
+      const d = state.docs.find(x => x.id === id);
+      if (!d) return;
+      if (!confirm('Bestand verwijderen (referentie blijft staan)?')) return;
+      d.fileName = ''; d.fileSize = 0; d.fileType = ''; d.fileData = '';
+      renderDocs(); renderPrintDocs(); saveState();
+      return;
+    }
+  });
+
+  $('docFileInput').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file || !pendingUploadId){ e.target.value=''; pendingUploadId=null; return; }
+    if (file.size > 900*1024){
+      alert('Bestand te groot ('+Math.round(file.size/1024)+' KB). Maximum is ~900 KB. Bewaar grotere bestanden buiten deze tool en noteer enkel de referentie.');
+      e.target.value=''; pendingUploadId=null; return;
+    }
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const d = state.docs.find(x => x.id === pendingUploadId);
+      if (d){
+        d.fileName = file.name;
+        d.fileSize = file.size;
+        d.fileType = file.type;
+        d.fileData = ev.target.result;
+      }
+      pendingUploadId = null;
+      e.target.value = '';
+      renderDocs(); renderPrintDocs(); saveState();
+    };
+    reader.readAsDataURL(file);
+  });
+
+  $('btnAddDoc').addEventListener('click', () => {
+    state.docs.push(newDoc());
+    renderDocs(); renderPrintDocs(); saveState();
+  });
+  $('btnClearDocs').addEventListener('click', () => {
+    if (!confirm('Alle stavingstukken wissen? Dit kan niet ongedaan worden gemaakt.')) return;
+    state.docs = [];
+    renderDocs(); renderPrintDocs(); saveState();
+  });
+  $('btnCsvDocs').addEventListener('click', exportCsvDocs);
+
+  /* --- Overige events --- */
+  $('btnAdd').addEventListener('click', () => { state.windows.push(newRow('')); renderAll(); });
+  $('btnFill').addEventListener('click', () => {
+    const existing = new Set(state.windows.map(w => w.ruimte.toLowerCase().trim()));
+    DEFAULT_ROOMS.forEach(r => { if (!existing.has(r.toLowerCase())) state.windows.push(newRow(r)); });
+    renderAll();
+  });
+  $('btnClear').addEventListener('click', () => {
+    if (!confirm('Alle metingen wissen? Ruimtenamen blijven staan.')) return;
+    state.windows.forEach(w => { w.b=''; w.h=''; w.sponning=''; w.dikte=''; });
+    renderAll();
+  });
+  $('btnReset').addEventListener('click', () => {
+    if (!confirm('Alles wissen en herstarten met standaard ruimtes? Ook de stavingstukken worden gewist.')) return;
+    state = defaultState();
+    initProject(); initGlasman();
+    renderAll();
+  });
+  $('btnCsv').addEventListener('click', exportCsv);
+}
+
+function exportCsv(){
+  const calcs = state.windows.map(w => ({ w, c:calcWindow(w) }));
+  const rows = [[
+    'Ruimte','Oriëntatie','Type','Methode','Breedte mm','Hoogte mm','Aantal',
+    'Sponning mm','Glaslat mm','Glasband mm','Glasdikte mm',
+    'Huidig glas','Ug oud','Nieuw glas','Ug nieuw',
+    'Omtrek glas mm','Omtrek glas cm','Omtrek kozijn mm','Glas m²',
+    'Uw oud','Uw nieuw','ΔU','Raam m²',
+    'Verbruik oud kWh/j','Verbruik nieuw kWh/j','Besparing kWh/j',
+    'Kost oud €/j','Kost nieuw €/j','Besparing €/j',
+    'CO2 oud kg/j','CO2 nieuw kg/j','Besparing kg/j'
+  ]];
+  calcs.forEach(({w,c}) => rows.push([
+    w.ruimte, w.orient, w.type, w.methode === 'effectief' ? 'Effectief opgemeten' : 'Sponning + glaslat',
+    w.b, w.h, w.aantal,
+    w.methode === 'sponning' ? w.sponning : '',
+    w.methode === 'sponning' ? w.glaslat  : '',
+    w.methode === 'sponning' ? w.band     : '',
+    c.glasdikte ? c.glasdikte.toFixed(0) : '',
+    GLAS[w.glasOud]?.short ?? '', c.ugOud,
+    GLAS[w.glasNieuw]?.short ?? '', c.ugNieuw,
+    c.Pglas_mm.toFixed(0), c.Pglas_cm.toFixed(1), c.Pkader_mm.toFixed(0),
+    c.Ag.toFixed(3),
+    c.uwOud.toFixed(2), c.uwNieuw.toFixed(2), c.dU.toFixed(2), c.AtotTot.toFixed(2),
+    c.kWhOld.toFixed(0), c.kWhNew.toFixed(0), c.kWh.toFixed(0),
+    c.eurOld.toFixed(2), c.eurNew.toFixed(2), c.eur.toFixed(2),
+    c.co2Old.toFixed(0), c.co2New.toFixed(0), c.co2.toFixed(0)
+  ]));
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(';')).join('\r\n');
+  const blob = new Blob(['\ufeff'+csv], { type:'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'glasmeetstaat.csv';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+function exportCsvDocs(){
+  const rows = [[
+    'Type','Referentie / doc. nr.','Fabrikant / leverancier','Datum','Geldig tot',
+    'Notitie','Bestandsnaam','Bestandsgrootte (bytes)','Bestandstype'
+  ]];
+  state.docs.forEach(d => {
+    const typeLabel = (DOC_TYPES.find(t => t.value === d.type) || {label:d.type}).label;
+    rows.push([
+      typeLabel, d.ref||'', d.fabrikant||'', d.datum||'', d.geldigTot||'',
+      d.notitie||'', d.fileName||'', d.fileSize||0, d.fileType||''
+    ]);
+  });
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(';')).join('\r\n');
+  const blob = new Blob(['\ufeff'+csv], { type:'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'glasmeetstaat-stavingstukken.csv';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+/* ---------- start ---------- */
+initProject();
+initGlasman();
+initEvents();
+renderAll();
+</script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./service-worker.js')
+        .then(reg => console.log('SW:', reg.scope))
+        .catch(err => console.error('SW error:', err));
+    });
+  }
+</script>
+</body></html>
